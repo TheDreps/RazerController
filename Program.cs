@@ -36,14 +36,14 @@ static void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs
 
     if (id == 1) { theip = "192.168.1.85"; }
     if (id == 2) { theip = "192.168.1.69"; }
-    if (id == 3) { theip = "192.168.1.119"; }
+    if (id == 3) { theip = "192.168.1.100"; }
     if (id == 4) { theip = "192.168.1.177"; }
     if (id == 5) { theip = "192.168.1.21"; }
     if (id == 6) { theip = "192.168.1.150"; }
-    if (id == 7) { theip = "192.168.1.100"; }
+    if (id == 7) { theip = "192.168.1.223"; }
     if (id == 8) { theip = "192.168.1.13"; }
     if (id == 9) { theip = "192.168.1.94"; }
-    if (id == 10) { theip = "192.168.1.246"; }
+    if (id == 10) { theip = "192.168.1.119"; }
     if (id == 11) { theip = "192.168.1.120"; }
     if (id == 12) { theip = "192.168.1.224"; }
     if (id == 13) { theip = "192.168.1.56"; }
