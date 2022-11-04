@@ -10,11 +10,13 @@ if (File.Exists(serverLoc))
     Process.Start(serverLoc);
 }
 
-bool tryReconnectMQTT = false;
 MqttClient client = new MqttClient("192.168.1.213");
 
 
 client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
+
+
+
 
 string clientId = Guid.NewGuid().ToString();
 client.Connect(clientId);
@@ -22,6 +24,18 @@ client.Connect(clientId);
 // subscribe to the topic "razer" with QoS 2
 client.Subscribe(new string[] { "razer" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
 
+client.ConnectionClosed += client_MqttConnectionClosed;
+
+void client_MqttConnectionClosed(object sender, EventArgs e)
+{
+    while (!client.IsConnected)
+    {
+        client.Disconnect();
+        Thread.Sleep(1000);
+        client.Connect(clientId);
+        client.Subscribe(new string[] { "razer" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
+    }
+}
 
 static void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
 {
